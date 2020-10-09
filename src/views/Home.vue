@@ -1,21 +1,25 @@
 <template>
   <div class="home">
-    <img
-      alt="Vue logo"
-      src="../assets/logo.png"
-    >
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div v-if="characters.length">
+      {{ characters[0] }}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import CharacterService from '@/models/CharacterService';
+import Gnome from '@/models/Gnome';
 
 @Component({
-  components: {
-    HelloWorld,
-  },
+
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  private characters: Gnome[] = [];
+
+  async mounted(): Promise<void> {
+    const response: Gnome[] = await CharacterService.getCharacters();
+    this.characters = response;
+  }
+}
 </script>
