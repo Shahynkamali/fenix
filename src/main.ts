@@ -1,7 +1,11 @@
 import Vue from 'vue';
+import browserDetect from 'vue-browser-detect-plugin';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import './assets/styles/tailwind.css';
+
+Vue.use(browserDetect);
 
 Vue.config.productionTip = false;
 
