@@ -1,21 +1,21 @@
 <template>
-  <div class="home">
-    <img
-      alt="Vue logo"
-      src="../assets/logo.png"
-    >
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <div class="home" />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import CharacterService, { Character, CharacterResponse } from '@/models/CharacterService';
+
 
 @Component({
-  components: {
-    HelloWorld,
-  },
+
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  private characters: Character[] = [];
+
+  async mounted(): Promise<void> {
+    const response: CharacterResponse<Character> = await CharacterService.getCharacters();
+    this.characters = response.Brastlewark;
+  }
+}
 </script>
