@@ -7,7 +7,7 @@
             v-for="(character, index) in characters"
             :key="index"
           >
-            {{ character.name }}
+            <AppCard />
           </div>
         </template>
       </GridWrapper>
@@ -20,11 +20,13 @@ import { Component, Vue } from 'vue-property-decorator';
 import CharacterService from '@/models/CharacterService';
 import Gnome from '@/models/Gnome';
 import GridWrapper from '~/GridWrapper/GridWrapper.vue';
+import AppCard from '~/AppCard/AppCard.vue';
 
 @Component({
   name: 'Home',
   components: {
     GridWrapper,
+    AppCard,
   },
 })
 export default class Home extends Vue {

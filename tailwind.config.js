@@ -5,6 +5,9 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
   },
+  experimental: {
+    applyComplexClasses: true,
+  },
   theme: {
     extend: {
       fontFamily: {
