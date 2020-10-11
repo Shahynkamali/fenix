@@ -7,7 +7,7 @@
             v-for="(character, index) in characters"
             :key="index"
           >
-            <AppCard />
+            <AppCard :data="character" />
           </div>
         </template>
       </GridWrapper>

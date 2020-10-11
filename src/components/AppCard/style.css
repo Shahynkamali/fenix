@@ -1,0 +1,68 @@
+.card {
+  @apply col-span-1 flex flex-col text-center bg-white rounded-lg shadow;
+}
+
+.card__content {
+  @apply flex-1 flex flex-col p-8;
+}
+
+.card__heading {
+  @apply mt-6 text-gray-900 text-sm leading-5 font-medium;
+}
+
+.card__details {
+  @apply mt-1 flex-grow flex flex-col justify-between;
+}
+
+.card__flag {
+  @apply px-2 py-1 text-xs leading-4 font-medium rounded-full;
+}
+
+.card__flag-content {
+  @apply mt-3 text-gray-500 text-sm leading-3;
+}
+
+.card__actions {
+  @apply border-t border-gray-200 -mt-px flex;
+}
+
+.card__button {
+  @apply flex-1 inline-flex items-center justify-center py-4 text-sm leading-5
+    text-gray-700 font-medium border border-transparent ease-in-out duration-150;
+}
+
+.card__button-container {
+  @apply w-0 flex-1 flex ;
+}
+
+.card__button-container--left {
+  @apply border-r border-gray-200;
+}
+
+.card__button-container--right {
+  @apply -ml-px;
+}
+
+.card__button:hover {
+  @apply text-gray-500;
+}
+
+.card__button:focus {
+  @apply outline-none shadow-outline-blue z-10 transition border-blue-300;
+}
+
+.card__button--left {
+  @apply -mr-px w-0 rounded-bl-lg;
+}
+
+.card__button--right {
+  @apply rounded-br-lg;
+}
+
+.card__icon {
+  @apply w-5 h-5 text-gray-400;
+}
+
+.card__button-content {
+  @apply ml-3;
+}

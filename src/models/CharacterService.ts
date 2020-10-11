@@ -2,6 +2,14 @@
 import Axios from 'axios';
 import Gnome from './Gnome';
 
+export enum HAIRCOLORS {
+  BLACK = 'Black',
+  RED = 'Red',
+  GREEN = 'Green',
+  GRAY = 'Gray',
+  PINK = 'Pink',
+}
+
 export interface Character {
   id: number;
   name: string;
@@ -9,7 +17,7 @@ export interface Character {
   age: number;
   weight: number;
   height: number;
-  hair_color: string;
+  hair_color: HAIRCOLORS;
   professions: string[] | [];
   friends: string[] | [];
 }

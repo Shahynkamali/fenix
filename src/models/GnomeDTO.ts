@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { Character } from './CharacterService';
+import { Character, HAIRCOLORS } from './CharacterService';
 
 export default class GnomeDTO implements Character {
   id = 0;
@@ -14,7 +14,7 @@ export default class GnomeDTO implements Character {
 
   height = 0
 
-  hair_color = '';
+  hair_color = HAIRCOLORS.BLACK;
 
   professions = [''];
 

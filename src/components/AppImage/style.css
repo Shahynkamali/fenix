@@ -1,0 +1,23 @@
+.image {
+  @apply inline-block relative;
+}
+
+.image__placeholder {
+  @apply absolute overflow-hidden;
+}
+
+.image__placeholder img {
+  @apply scale-105;
+
+  filter: blur(10px);
+}
+
+.image__img {
+  @apply opacity-0;
+
+  transition: opacity 300ms ease;
+}
+
+.image--loaded .image__img {
+  @apply opacity-100;
+}
