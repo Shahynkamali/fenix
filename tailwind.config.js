@@ -45,6 +45,13 @@ module.exports = {
       2: '2rem',
       3: '3rem',
     },
+    minHeight: {
+      1: '1rem',
+      2: '2rem',
+      3: '3rem',
+      4: '4rem',
+      5: '5rem',
+    },
   },
   variants: {
     appearance: ['responsive'],

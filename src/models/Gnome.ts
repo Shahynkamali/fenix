@@ -44,4 +44,12 @@ export default class Gnome extends GnomeDTO {
     });
     return friendProfiles;
   }
+
+  static sortGnomesByAge(gnomes: Gnome[]) {
+    return gnomes.sort((a, b) => b.age - a.age);
+  }
+
+  static sortGnomesByHairColor(gnomes: Gnome[], haircolor: HAIRCOLORS) {
+    return gnomes.filter((gnome) => gnome.hair_color === haircolor);
+  }
 }
