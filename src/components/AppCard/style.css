@@ -1,9 +1,11 @@
 .card {
-  @apply col-span-1 flex flex-col text-center bg-white rounded-lg shadow;
+  @apply col-span-1 flex flex-col text-center bg-white rounded-lg shadow h-full;
+
+  min-height: 322px;
 }
 
 .card__content {
-  @apply flex-1 flex flex-col p-8;
+  @apply flex-1 flex flex-col py-8 px-5;
 }
 
 .card__heading {

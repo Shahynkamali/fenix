@@ -1,5 +1,5 @@
 .image {
-  @apply inline-block relative;
+  @apply inline-block;
 }
 
 .image__placeholder {
@@ -13,7 +13,7 @@
 }
 
 .image__img {
-  @apply opacity-0;
+  @apply opacity-0 z-0;
 
   transition: opacity 300ms ease;
 }

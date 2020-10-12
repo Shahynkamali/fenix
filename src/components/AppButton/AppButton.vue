@@ -1,6 +1,5 @@
 <template>
   <button
-    :dir="dir"
     class="button"
     v-on="$listeners"
   >

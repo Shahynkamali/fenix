@@ -2,16 +2,16 @@
 import GnomeDTO from './GnomeDTO';
 import { HAIRCOLORS } from './CharacterService';
 
-
 export default class Gnome extends GnomeDTO {
   constructor(dto: GnomeDTO) {
     super();
     Object.assign(this, dto);
   }
 
-  convertCentimeterToInches(centimeters: number): string {
+  private convertCentimeterToInches(centimeters: number): string {
     return (centimeters * 0.39370).toFixed(2);
   }
+
 
   get heightInCentimeter(): number {
     return Number(this.height.toFixed(2));
@@ -26,5 +26,22 @@ export default class Gnome extends GnomeDTO {
       return 'bg-black text-white';
     }
     return `bg-${this.hair_color.toLowerCase()}-100 text-${this.hair_color.toLowerCase()}-800`;
+  }
+
+  get isEmployed() {
+    return !!this.professions.length;
+  }
+
+
+  static findGnomes(names: string[], gnomes: Gnome[]) {
+    const friendProfiles: Gnome[] = [];
+    names.forEach((friend: string) => {
+      gnomes.forEach((character: Gnome) => {
+        if (character.name.toLowerCase().trim() === friend.toLowerCase().trim()) {
+          friendProfiles.push(character);
+        }
+      });
+    });
+    return friendProfiles;
   }
 }

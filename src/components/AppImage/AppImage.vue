@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="image"
-  >
+  <div class="image">
     <div
       v-if="dataUrl"
       :style="background ? background : null "
@@ -13,7 +11,7 @@
       >
     </div>
     <img
-      v-if="src && !path"
+      v-if="src"
       :src="dataUrl"
       :alt="$attrs.alt || 'image'"
       v-bind="$attrs"

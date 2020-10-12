@@ -29,12 +29,13 @@ export default class GridWrapper extends Vue {
   }
 
   get gridStyles() {
+    const smallGrid = Math.round(this.column) - 1;
     const largeGrid = Math.round(this.column) + 1;
     const extraLargeGrid = Math.round(this.column) + 2;
     const smallGap = Math.round(this.gap - 1);
     const largeGap = Math.round(this.gap + 1);
     return `
-      sm:grid-cols-2
+      sm:grid-cols-${smallGrid.toString()}
       md:grid-cols-${Math.round(this.column).toString()}
       lg:grid-cols-${largeGrid.toString()}
       xl:grid-cols-${extraLargeGrid.toString()}
