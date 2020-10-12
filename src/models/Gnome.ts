@@ -46,7 +46,7 @@ export default class Gnome extends GnomeDTO {
   }
 
   static sortGnomesByAge(gnomes: Gnome[]) {
-    return gnomes.sort((a, b) => b.age - a.age);
+    return gnomes.sort((a, b) => a.age - b.age);
   }
 
   static sortGnomesByHairColor(gnomes: Gnome[], haircolor: HAIRCOLORS) {

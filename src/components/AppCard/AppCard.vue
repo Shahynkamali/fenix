@@ -20,6 +20,14 @@
             {{ data.hair_color }}
           </span>
         </dd>
+        <dd class="card__flag-content">
+          Age
+          <span
+            class="card__flag"
+          >
+            {{ data.age }}
+          </span>
+        </dd>
       </dl>
     </div>
     <div class="card__actions">
