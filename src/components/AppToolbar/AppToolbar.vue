@@ -1,6 +1,11 @@
 <template>
-  <nav class="toolbar">
-    <div class="toolbar__container">
+  <nav
+    class="toolbar"
+  >
+    <div
+      class="toolbar__container"
+      :class="customStyles"
+    >
       <div
         class="toolbar__button-container"
       >
@@ -38,7 +43,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import {
+  Component, Vue, Watch, Prop,
+} from 'vue-property-decorator';
 import CloseSVG from '@/assets/svgs/close.svg';
 import HamburgerSVG from '@/assets/svgs/hamburger.svg';
 import './style.css';
@@ -51,6 +58,9 @@ import './style.css';
   },
 })
 export default class AppToolbar extends Vue {
+  @Prop({ required: false })
+    readonly customStyles!: string;
+
   @Watch('viewPortWidth')
   watchViewPortChange(viewPortWidth: number) {
     if (viewPortWidth <= 539 && this.isToolBarOpen) {

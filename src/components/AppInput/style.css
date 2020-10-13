@@ -1,5 +1,5 @@
 .input {
-  @apply form-input block w-full sm:text-sm sm:leading-5;
+  @apply form-input block w-full xs:text-xs sm:leading-5;
 }
 
 .input__container {

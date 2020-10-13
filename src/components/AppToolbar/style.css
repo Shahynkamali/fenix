@@ -14,16 +14,12 @@
   @apply flex w-full;
 }
 
-.toolbar__content > div:hover {
-  @apply bg-cool-gray-100 cursor-pointer;
-}
-
 .toolbar__content--horizontal {
-  @apply flex-wrap;
+  @apply flex-wrap justify-evenly md:justify-start;
 }
 
 .toolbar__content--vertical {
-  @apply flex-col items-center justify-start shadow;
+  @apply flex-col items-center justify-start shadow px-8 pt-2 pb-1;
 }
 
 .toolbar__button {

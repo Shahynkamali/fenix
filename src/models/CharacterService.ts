@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Gnome from './Gnome';
 
 export enum HAIRCOLORS {
-  ALL = 'All Colors',
+  ALL = 'All Hair Colors',
   BLACK = 'Black',
   RED = 'Red',
   GREEN = 'Green',

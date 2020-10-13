@@ -1,5 +1,5 @@
 .card {
-  @apply col-span-1 flex flex-col text-center bg-white rounded-lg shadow h-full;
+  @apply col-span-1 flex flex-col text-center bg-cool-gray-50 rounded-lg shadow h-full;
 
   min-height: 322px;
 }
@@ -30,7 +30,7 @@
 
 .card__button {
   @apply flex-1 inline-flex items-center justify-center py-4 text-sm leading-5
-    text-gray-700 font-medium border border-transparent ease-in-out duration-150;
+    text-cool-gray-500 font-medium border border-transparent ease-in-out duration-150;
 }
 
 .card__button-container {
@@ -46,7 +46,7 @@
 }
 
 .card__button:hover {
-  @apply text-gray-500;
+  @apply text-cool-gray-900;
 }
 
 .card__button:focus {

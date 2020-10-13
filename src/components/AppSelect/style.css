@@ -3,7 +3,7 @@
 }
 
 .select__button {
-  @apply mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 xs:text-sm xs:leading-5;
+  @apply mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300  xs:leading-5 xl:cursor-pointer lg:cursor-pointer;
 }
 
 .select__button:focus {
