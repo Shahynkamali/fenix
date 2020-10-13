@@ -30,30 +30,7 @@
         </dd>
       </dl>
     </div>
-    <div class="card__actions">
-      <div class="card__button-container card__button-container--left">
-        <AppButton
-          class="card__button card__button--left"
-          @click="findFriends(data.friends)"
-        >
-          <template>
-            <UsersSVG class="card__icon" />
-            <span class="card__button-content">Friends</span>
-          </template>
-        </AppButton>
-      </div>
-      <div class="card__button-container card__button-container-right">
-        <AppButton
-          class="card__button card__button--right"
-          @click="displayDetails(data);"
-        >
-          <template>
-            <InformationCircleSVG class="card__icon" />
-            <span class="card__button-content">Details</span>
-          </template>
-        </AppButton>
-      </div>
-    </div>
+    <slot name="cardActions" />
   </div>
 </template>>
 
@@ -61,10 +38,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Gnome from '@/models/Gnome';
-import UsersSVG from '@/assets/svgs/users.svg';
-import InformationCircleSVG from '@/assets/svgs/information-circle.svg';
 import AppImage from '~/AppImage/AppImage.vue';
-import AppButton from '~/AppButton/AppButton.vue';
 import './style.css';
 
 
@@ -72,9 +46,6 @@ import './style.css';
   name: 'AppCard',
   components: {
     AppImage,
-    AppButton,
-    UsersSVG,
-    InformationCircleSVG,
   },
 })
 export default class AppCard extends Vue {
@@ -83,14 +54,6 @@ export default class AppCard extends Vue {
 
     toggleSlideOver() {
       this.$emit('toggleSlideOver');
-    }
-
-    findFriends(payload: string[]) {
-      this.$emit('findFriends', payload);
-    }
-
-    displayDetails(payload: Gnome) {
-      this.$emit('displayDetails', payload);
     }
 }
 </script>

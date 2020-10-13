@@ -1,11 +1,13 @@
 <template>
-  <div class="app ">
+  <div class="app">
     <SlideOver
+      v-model="activeGnome"
       :is-slide-over-active="isSlideOverActive"
-      :data="gnomesToDisplay"
+      :data="activeGnome"
       @toggleSlideOver="toggleSlideOver"
     />
     <AppToolbar
+      v-if="!isSlideOverActive"
       class="app__toolbar"
       :custom-styles="'bg-cool-gray-50 w-10/12 mx-auto my-0'"
     >
@@ -42,7 +44,10 @@
         />
       </template>
     </AppToolbar>
-    <div class="vld-parent">
+    <div
+      v-if="!isSlideOverActive"
+      class="vld-parent"
+    >
       <Loading
         :active.sync="isLoading"
         :is-full-page="true"
@@ -50,7 +55,13 @@
         :enforce-focus="true"
         :can-cancel="false"
       />
-      <GridWrapper>
+      <div
+        v-if="!hasCharacters && !isLoading"
+        class="flex w-full justify-center"
+      >
+        <LoadingSVG class=" w-96 h-96" />
+      </div>
+      <GridWrapper v-else>
         <template>
           <div
             v-for="(character, index) in characters"
@@ -59,9 +70,23 @@
             <AppCard
               :data="character"
               @toggleSlideOver="toggleSlideOver"
-              @findFriends="findFriends"
-              @displayDetails="displayDetails"
-            />
+            >
+              <template #cardActions>
+                <div
+                  class="card__actions cursor-pointer"
+                  @click="handleDetails(character)"
+                >
+                  <div class="card__button-container card__button-container-right">
+                    <AppButton class="card__button card__button--right">
+                      <template>
+                        <InformationCircleSVG class="card__icon" />
+                        <span class="card__button-content">Details</span>
+                      </template>
+                    </AppButton>
+                  </div>
+                </div>
+              </template>
+            </AppCard>
           </div>
         </template>
       </GridWrapper>
@@ -74,12 +99,15 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import CharacterService, { HAIRCOLORS } from '@/models/CharacterService';
 import { SORTBYAGE } from '@/helpers';
 import Gnome from '@/models/Gnome';
+import InformationCircleSVG from '@/assets/svgs/information-circle.svg';
+import LoadingSVG from '@/assets/svgs/loading.svg';
 import GridWrapper from '~/GridWrapper/GridWrapper.vue';
 import SlideOver from '~/SlideOver/SlideOver.vue';
 import AppCard from '~/AppCard/AppCard.vue';
 import AppToolbar from '~/AppToolbar/AppToolbar.vue';
 import AppSelect from '~/AppSelect/AppSelect.vue';
 import AppInput from '~/AppInput/AppInput.vue';
+import AppButton from '~/AppButton/AppButton.vue';
 
 @Component({
   name: 'App',
@@ -90,6 +118,9 @@ import AppInput from '~/AppInput/AppInput.vue';
     AppToolbar,
     AppSelect,
     AppInput,
+    InformationCircleSVG,
+    AppButton,
+    LoadingSVG,
   },
 })
 
@@ -133,23 +164,27 @@ export default class App extends Vue {
 
   private characters: Gnome[] = [];
 
-  gnomesToDisplay: Gnome[] = [];
+  private searchInput = '';
 
-  searchInput = '';
+  private isSlideOverActive = false;
 
-  isSlideOverActive = false;
+  private isLoading = false;
 
-  isLoading = false;
+  private HAIRCOLORS = HAIRCOLORS;
 
-  HAIRCOLORS = HAIRCOLORS;
+  private SORTBYAGE = SORTBYAGE;
 
-  SORTBYAGE = SORTBYAGE;
+  private selectedHairColor = HAIRCOLORS.ALL;
 
-  selectedHairColor = HAIRCOLORS.ALL;
+  private selectedAgeSort = SORTBYAGE.ASCENDING;
 
-  selectedAgeSort = SORTBYAGE.ASCENDING;
+  private selectedProfession = this.collectionOfProfessions[0];
 
-  selectedProfession = this.collectionOfProfessions[0];
+  private activeGnome: Gnome | null = null;
+
+  get hasCharacters(): boolean {
+    return !!this.characters.length;
+  }
 
   get collectionOfProfessions(): string[] {
     const listOfProfessions = Gnome.collectionOfAllProfessions(this.characters);
@@ -158,18 +193,12 @@ export default class App extends Vue {
   }
 
   toggleSlideOver() {
-    this.clearCollection(this.gnomesToDisplay);
     this.isSlideOverActive = !this.isSlideOverActive;
   }
 
-  findFriends(payload: string[]): void {
+  handleDetails(payload: Gnome): void {
+    this.activeGnome = payload;
     this.isSlideOverActive = true;
-    this.gnomesToDisplay = Gnome.findGnomes(payload, this.characters);
-  }
-
-  displayDetails(payload: Gnome): void {
-    this.isSlideOverActive = true;
-    this.gnomesToDisplay.push(payload);
   }
 
   clearCollection(collection: Gnome[]): void {
