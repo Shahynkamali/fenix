@@ -1,0 +1,7 @@
+.input {
+  @apply form-input block w-full sm:text-sm sm:leading-5;
+}
+
+.input__container {
+  @apply mt-1 relative rounded-md shadow-sm;
+}

@@ -1,12 +1,5 @@
 <template>
-  <div class="vld-parent home">
-    <Loading
-      :active.sync="isLoading"
-      :is-full-page="true"
-      :lock-scroll="true"
-      :enforce-focus="true"
-      :can-cancel="false"
-    />
+  <div class=" home">
     <SlideOver
       :is-slide-over-active="isSlideOverActive"
       :data="gnomesToDisplay"
@@ -15,6 +8,12 @@
     <div class="w-full">
       <AppToolbar>
         <template #toolBarContent>
+          <AppInput
+            :id="'input'"
+            v-model="searchInput"
+            :value="searchInput"
+            :label="'Search For Character'"
+          />
           <AppSelect
             v-model="selectedAgeSort"
             :label="'ageSortOptions'"
@@ -36,7 +35,14 @@
         </template>
       </AppToolbar>
     </div>
-    <div v-if="characters.length">
+    <div class="vld-parent">
+      <Loading
+        :active.sync="isLoading"
+        :is-full-page="true"
+        :lock-scroll="true"
+        :enforce-focus="true"
+        :can-cancel="false"
+      />
       <GridWrapper>
         <template>
           <div
@@ -62,19 +68,21 @@ import CharacterService, { HAIRCOLORS } from '@/models/CharacterService';
 import { SORTBYAGE } from '@/helpers';
 import Gnome from '@/models/Gnome';
 import GridWrapper from '~/GridWrapper/GridWrapper.vue';
-import AppCard from '~/AppCard/AppCard.vue';
 import SlideOver from '~/SlideOver/SlideOver.vue';
+import AppCard from '~/AppCard/AppCard.vue';
 import AppToolbar from '~/AppToolbar/AppToolbar.vue';
 import AppSelect from '~/AppSelect/AppSelect.vue';
+import AppInput from '~/AppInput/AppInput.vue';
 
 @Component({
   name: 'Home',
   components: {
     GridWrapper,
-    AppCard,
     SlideOver,
+    AppCard,
     AppToolbar,
     AppSelect,
+    AppInput,
   },
 })
 
@@ -106,15 +114,21 @@ export default class Home extends Vue {
     this.characters = gnomesFilteredByHairColorAndProfession;
   }
 
+  @Watch('searchInput')
+  async watchInputChange(searchText: string) {
+    this.clearCollection(this.characters);
+    const freshGnomes = await CharacterService.getCharacters();
+    const gnomesFilteredByAge = Gnome.sortGnomesByAge(freshGnomes, this.selectedAgeSort);
+    const gnomesFilteredByProfession = Gnome.sortGnomesByProfession(gnomesFilteredByAge, this.selectedProfession);
+    const gnomesFilteredByHairColorAndProfession = Gnome.sortGnomesByHairColor(gnomesFilteredByProfession, this.selectedHairColor);
+    this.characters = Gnome.sortGnomesByName(gnomesFilteredByHairColorAndProfession, searchText);
+  }
+
   private characters: Gnome[] = [];
 
   gnomesToDisplay: Gnome[] = [];
 
-  get collectionOfProfessions(): string[] {
-    const listOfProfessions = Gnome.collectionOfAllProfessions(this.characters);
-    listOfProfessions.unshift('All Professions');
-    return listOfProfessions;
-  }
+  searchInput = '';
 
   isSlideOverActive = false;
 
@@ -129,6 +143,12 @@ export default class Home extends Vue {
   selectedAgeSort = SORTBYAGE.ASCENDING;
 
   selectedProfession = this.collectionOfProfessions[0];
+
+  get collectionOfProfessions(): string[] {
+    const listOfProfessions = Gnome.collectionOfAllProfessions(this.characters);
+    listOfProfessions.unshift('All Professions');
+    return listOfProfessions;
+  }
 
   toggleSlideOver() {
     this.clearCollection(this.gnomesToDisplay);
@@ -169,4 +189,5 @@ export default class Home extends Vue {
   width: 100%;
   margin: 0 auto;
 }
+
 </style>

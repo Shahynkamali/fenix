@@ -13,7 +13,6 @@ export default class Gnome extends GnomeDTO {
     return (centimeters * 0.39370).toFixed(2);
   }
 
-
   get heightInCentimeter(): number {
     return Number(this.height.toFixed(2));
   }
@@ -32,7 +31,6 @@ export default class Gnome extends GnomeDTO {
   get isEmployed() {
     return !!this.professions.length;
   }
-
 
   static findGnomes(names: string[], gnomes: Gnome[]) {
     const friendProfiles: Gnome[] = [];
@@ -64,6 +62,10 @@ export default class Gnome extends GnomeDTO {
 
   static sortGnomesByProfession(gnomes: Gnome[], profession: string) {
     return profession === 'All Professions' ? gnomes : gnomes.filter((gnome: Gnome) => gnome.professions.includes(profession));
+  }
+
+  static sortGnomesByName(gnomes: Gnome[], name: string): Gnome[] {
+    return !name ? gnomes : gnomes.filter((gnome: Gnome) => name.toLowerCase().split(' ').every((n) => gnome.name.toLowerCase().includes(n)));
   }
 
   static mergeArrayAndRemoveDuplicats(arr: any): string[] {
