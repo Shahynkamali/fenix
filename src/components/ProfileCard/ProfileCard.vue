@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="w-full my-10">
+    <ul class="w-full my-10 p-5 shadow-lg rounded-md">
       <li class="flex flex-wrap w-full justify-start sm:justify-center xs:justify-center">
         <AppImage
           width="300px"

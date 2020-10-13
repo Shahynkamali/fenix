@@ -15,6 +15,8 @@ module.exports = {
 
   lintOnSave: process.env.NODE_ENV !== 'production',
   productionSourceMap: false,
+
+  publicPath: process.env.NODE_ENV === 'production' ? `/${process.env.CI_PROJECT_NAME}/` : '/',
   devServer: {
     overlay: {
       warnings: true,
