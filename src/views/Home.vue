@@ -19,27 +19,12 @@
             <span>sort by age</span>
           </div>
           <div>
-            <label
-              for="location"
-              class="block text-sm leading-5 font-medium text-gray-700 sr-only"
-            >
-              Location
-            </label>
-            <select
-              id="location"
+            <AppSelect
               v-model="selectedHairColor"
-              class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none
-              focus:shadow-outline-blue
-              focus:border-blue-300 sm:text-sm sm:leading-5"
-            >
-              <option
-                v-for="(color, index) in HAIRCOLORS"
-                :key="index"
-                :value="color"
-              >
-                {{ color }}
-              </option>
-            </select>
+              :label="'hairColors'"
+              :options="HAIRCOLORS"
+              :value="HAIRCOLORS.ALL"
+            />
           </div>
         </template>
       </AppToolbar>
@@ -72,6 +57,7 @@ import GridWrapper from '~/GridWrapper/GridWrapper.vue';
 import AppCard from '~/AppCard/AppCard.vue';
 import SlideOver from '~/SlideOver/SlideOver.vue';
 import AppToolbar from '~/AppToolbar/AppToolbar.vue';
+import AppSelect from '~/AppSelect/AppSelect.vue';
 
 @Component({
   name: 'Home',
@@ -80,6 +66,7 @@ import AppToolbar from '~/AppToolbar/AppToolbar.vue';
     AppCard,
     SlideOver,
     AppToolbar,
+    AppSelect,
   },
 })
 
@@ -102,12 +89,11 @@ export default class Home extends Vue {
 
   selectedHairColor = HAIRCOLORS.ALL;
 
-  isLoading = true;
+  isLoading = false;
 
   get renderGnomes() {
     return this.gnomesFilteredByHairColor.length ? this.gnomesFilteredByHairColor : this.characters;
   }
-
 
   toggleSlideOver() {
     this.clearCollection(this.gnomesToDisplay);

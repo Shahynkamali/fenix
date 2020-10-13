@@ -4,6 +4,8 @@ module.exports = {
   purge: false,
   future: {
     removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+
   },
   experimental: {
     applyComplexClasses: true,
@@ -51,6 +53,13 @@ module.exports = {
       3: '3rem',
       4: '4rem',
       5: '5rem',
+    },
+    screens: {
+      xs: { max: '539px' },
+      sm: { min: '540px', max: '667px' },
+      md: { min: '668px', max: '923px' },
+      lg: { min: '924px', max: '1179px' },
+      xl: { min: '1180px' },
     },
   },
   variants: {

@@ -1,0 +1,11 @@
+.select {
+  @apply inline-flex;
+}
+
+.select__button {
+  @apply mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 xs:text-sm xs:leading-5;
+}
+
+.select__button:focus {
+  @apply border-blue-300 shadow-outline-blue outline-none ;
+}
