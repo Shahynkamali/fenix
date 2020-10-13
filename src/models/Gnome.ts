@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+import { SORTBYAGE } from '@/helpers';
 import GnomeDTO from './GnomeDTO';
 import { HAIRCOLORS } from './CharacterService';
 
@@ -45,11 +46,36 @@ export default class Gnome extends GnomeDTO {
     return friendProfiles;
   }
 
-  static sortGnomesByAge(gnomes: Gnome[]) {
-    return gnomes.sort((a, b) => a.age - b.age);
+  private static sortAscending(collection: Gnome[]) {
+    return collection.sort((a, b) => a.age - b.age);
+  }
+
+  private static sortDescending(collection: Gnome[]) {
+    return collection.sort((a, b) => b.age - a.age);
+  }
+
+  static sortGnomesByAge(collection: Gnome[], order: SORTBYAGE) {
+    return order === SORTBYAGE.ASCENDING ? Gnome.sortAscending(collection) : Gnome.sortDescending(collection);
   }
 
   static sortGnomesByHairColor(gnomes: Gnome[], haircolor: HAIRCOLORS) {
-    return gnomes.filter((gnome) => gnome.hair_color === haircolor);
+    return haircolor === HAIRCOLORS.ALL ? gnomes : gnomes.filter((gnome: Gnome) => gnome.hair_color === haircolor);
+  }
+
+  static sortGnomesByProfession(gnomes: Gnome[], profession: string) {
+    return profession === 'All Professions' ? gnomes : gnomes.filter((gnome: Gnome) => gnome.professions.includes(profession));
+  }
+
+  static mergeArrayAndRemoveDuplicats(arr: any): string[] {
+    return [...new Set([].concat(...arr))];
+  }
+
+  static collectionOfAllProfessions(gnomes: Gnome[]): string[] {
+    const gnomesWithProffessions = gnomes.filter((gnome: Gnome) => gnome.isEmployed);
+    const allProfessions: string[][] = [];
+    gnomesWithProffessions.forEach((gnome: Gnome) => {
+      allProfessions.push(gnome.professions);
+    });
+    return Gnome.mergeArrayAndRemoveDuplicats(allProfessions);
   }
 }

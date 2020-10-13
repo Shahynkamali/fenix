@@ -3,12 +3,12 @@ import Axios from 'axios';
 import Gnome from './Gnome';
 
 export enum HAIRCOLORS {
+  ALL = 'All Colors',
   BLACK = 'Black',
   RED = 'Red',
   GREEN = 'Green',
   GRAY = 'Gray',
   PINK = 'Pink',
-  ALL = 'All Colors'
 }
 
 export interface Character {
