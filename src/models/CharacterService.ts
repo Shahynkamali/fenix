@@ -1,15 +1,8 @@
 /* eslint-disable import/no-cycle */
 import Axios from 'axios';
+import { HAIRCOLORS } from '@/helpers/index';
 import Gnome from './Gnome';
-
-export enum HAIRCOLORS {
-  ALL = 'All Hair Colors',
-  BLACK = 'Black',
-  RED = 'Red',
-  GREEN = 'Green',
-  GRAY = 'Gray',
-  PINK = 'Pink',
-}
+import GnomeDTO from './GnomeDTO';
 
 export interface Character {
   id: number;
@@ -33,7 +26,13 @@ export default abstract class CharacterService {
 
   static async getCharacters(): Promise<Gnome[]> {
     const url = 'https://bitbucket.org/fenix-group-international/frontend-test/raw/80d1664d5db3a516537a3bbbb4f3fca968d18b2e/data.json/';
-    const response = await this.charactersAxios.get<ApiResponse<Character>>(url);
-    return response.data.Brastlewark.map((character) => new Gnome(character));
+    const results = await this.charactersAxios.get<ApiResponse<Character>>(url)
+      .then((response) => response.data.Brastlewark.map((result) => new Gnome(result)))
+      .catch((error) => {
+        const errorGnomne = [new Gnome(new GnomeDTO())];
+        errorGnomne[0].name = error;
+        return errorGnomne;
+      });
+    return results;
   }
 }

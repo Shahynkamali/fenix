@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
-import { SORTBYAGE } from '@/helpers';
+import { SORTBYAGE, HAIRCOLORS } from '@/helpers';
 import GnomeDTO from './GnomeDTO';
-import { HAIRCOLORS } from './CharacterService';
 
 export default class Gnome extends GnomeDTO {
   constructor(dto: GnomeDTO) {

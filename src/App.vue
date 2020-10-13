@@ -55,16 +55,11 @@
         :enforce-focus="true"
         :can-cancel="false"
       />
-      <div
-        v-if="!hasCharacters && !isLoading"
-        class="flex w-full justify-center"
-      >
-        <LoadingSVG class=" w-96 h-96" />
-      </div>
-      <GridWrapper v-else>
+      <AppCTA :message="renderCTAMessage" />
+      <GridWrapper v-if="hasCharacters && promiseWasResolved">
         <template>
           <div
-            v-for="(character, index) in characters"
+            v-for="(character, index) in collection"
             :key="index"
           >
             <AppCard
@@ -96,8 +91,8 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import CharacterService, { HAIRCOLORS } from '@/models/CharacterService';
-import { SORTBYAGE } from '@/helpers';
+import CharacterService from '@/models/CharacterService';
+import { SORTBYAGE, HAIRCOLORS } from '@/helpers';
 import Gnome from '@/models/Gnome';
 import InformationCircleSVG from '@/assets/svgs/information-circle.svg';
 import LoadingSVG from '@/assets/svgs/loading.svg';
@@ -108,6 +103,7 @@ import AppToolbar from '~/AppToolbar/AppToolbar.vue';
 import AppSelect from '~/AppSelect/AppSelect.vue';
 import AppInput from '~/AppInput/AppInput.vue';
 import AppButton from '~/AppButton/AppButton.vue';
+import AppCTA from '~/AppCTA/AppCTA.vue';
 
 @Component({
   name: 'App',
@@ -121,48 +117,49 @@ import AppButton from '~/AppButton/AppButton.vue';
     InformationCircleSVG,
     AppButton,
     LoadingSVG,
+    AppCTA,
   },
 })
 
 export default class App extends Vue {
   @Watch('selectedHairColor')
   async watchHairColorChange(haircolor: HAIRCOLORS) {
-    this.clearCollection(this.characters);
+    this.clearCollection(this.collection);
     const freshGnomes = await CharacterService.getCharacters();
     const gnomesFilteredByHairColor = Gnome.sortGnomesByHairColor(freshGnomes, haircolor);
     const gnomesFilteredByAgeAndHairColor = Gnome.sortGnomesByAge(gnomesFilteredByHairColor, this.selectedAgeSort);
-    this.characters = gnomesFilteredByAgeAndHairColor;
+    this.collection = gnomesFilteredByAgeAndHairColor;
   }
 
   @Watch('selectedAgeSort')
   async watchSortChange(sortBy: SORTBYAGE) {
-    this.clearCollection(this.characters);
+    this.clearCollection(this.collection);
     const freshGnomes = await CharacterService.getCharacters();
     const gnomesFilteredByHairColor = Gnome.sortGnomesByHairColor(freshGnomes, this.selectedHairColor);
-    this.characters = Gnome.sortGnomesByAge(gnomesFilteredByHairColor, sortBy);
+    this.collection = Gnome.sortGnomesByAge(gnomesFilteredByHairColor, sortBy);
   }
 
   @Watch('selectedProfession')
   async watchProfessionChange(profession: string) {
-    this.clearCollection(this.characters);
+    this.clearCollection(this.collection);
     const freshGnomes = await CharacterService.getCharacters();
     const gnomesFilteredByAge = Gnome.sortGnomesByAge(freshGnomes, this.selectedAgeSort);
     const gnomesFilteredByProfession = Gnome.sortGnomesByProfession(gnomesFilteredByAge, profession);
     const gnomesFilteredByHairColorAndProfession = Gnome.sortGnomesByHairColor(gnomesFilteredByProfession, this.selectedHairColor);
-    this.characters = gnomesFilteredByHairColorAndProfession;
+    this.collection = gnomesFilteredByHairColorAndProfession;
   }
 
   @Watch('searchInput')
   async watchInputChange(searchText: string) {
-    this.clearCollection(this.characters);
+    this.clearCollection(this.collection);
     const freshGnomes = await CharacterService.getCharacters();
     const gnomesFilteredByAge = Gnome.sortGnomesByAge(freshGnomes, this.selectedAgeSort);
     const gnomesFilteredByProfession = Gnome.sortGnomesByProfession(gnomesFilteredByAge, this.selectedProfession);
     const gnomesFilteredByHairColorAndProfession = Gnome.sortGnomesByHairColor(gnomesFilteredByProfession, this.selectedHairColor);
-    this.characters = Gnome.sortGnomesByName(gnomesFilteredByHairColorAndProfession, searchText);
+    this.collection = Gnome.sortGnomesByName(gnomesFilteredByHairColorAndProfession, searchText);
   }
 
-  private characters: Gnome[] = [];
+  private collection: Gnome[] = [];
 
   private searchInput = '';
 
@@ -183,13 +180,21 @@ export default class App extends Vue {
   private activeGnome: Gnome | null = null;
 
   get hasCharacters(): boolean {
-    return !!this.characters.length;
+    return !!this.collection.length;
+  }
+
+  get promiseWasResolved() {
+    return this.collection.length > 1;
   }
 
   get collectionOfProfessions(): string[] {
-    const listOfProfessions = Gnome.collectionOfAllProfessions(this.characters);
+    const listOfProfessions = Gnome.collectionOfAllProfessions(this.collection);
     listOfProfessions.unshift('All Professions');
     return listOfProfessions;
+  }
+
+  get renderCTAMessage(): any {
+    return this.promiseWasResolved ? 'Brastlewark' : this.collection[0];
   }
 
   toggleSlideOver() {
@@ -210,8 +215,8 @@ export default class App extends Vue {
   async mounted(): Promise<void> {
     this.isLoading = true;
     const response = await CharacterService.getCharacters();
-    this.characters = Gnome.sortGnomesByAge(response, SORTBYAGE.ASCENDING);
-    if (this.characters.length) {
+    this.collection = Gnome.sortGnomesByAge(response, SORTBYAGE.ASCENDING);
+    if (this.collection.length) {
       this.isLoading = false;
     }
   }
