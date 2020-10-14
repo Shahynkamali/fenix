@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppToolbar should render the template injected in the slot 1`] = `
+<nav
+  class="toolbar"
+>
+  <div
+    class="toolbar__container"
+  >
+    <div
+      class="toolbar__button-container"
+    >
+      <button
+        aria-expanded="false"
+        aria-label="Toolbar menu"
+        class="toolbar__button"
+      >
+        <svg
+          aria-label="Toolbar menu open"
+          class="toolbar__icon"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+     
+    <div
+      class="toolbar__content toolbar__content--horizontal"
+    >
+      <div
+        class="stub-svg-container"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </div>
+       
+      <div
+        class="stub-svg-container"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+   
+  <transition-stub
+    name="slide"
+  >
+    <div
+      class="toolbar__content toolbar__content--vertical"
+      style="display: none;"
+    >
+      <div
+        class="stub-svg-container"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </div>
+       
+      <div
+        class="stub-svg-container"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </div>
+    </div>
+  </transition-stub>
+</nav>
+`;
+
+exports[`AppToolbar should set the state of isToolBarOpen to true on the click of the button 1`] = `
+<nav
+  class="toolbar"
+>
+  <div
+    class="toolbar__container"
+  >
+    <div
+      class="toolbar__button-container"
+    >
+      <button
+        aria-expanded="false"
+        aria-label="Toolbar menu"
+        class="toolbar__button"
+      >
+        <svg
+          aria-label="Toolbar menu open"
+          class="toolbar__icon"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+     
+    <div
+      class="toolbar__content toolbar__content--horizontal"
+    />
+  </div>
+   
+  <transition-stub
+    name="slide"
+  >
+    <div
+      class="toolbar__content toolbar__content--vertical"
+      style="display: none;"
+    />
+  </transition-stub>
+</nav>
+`;

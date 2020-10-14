@@ -1,5 +1,6 @@
 <template>
   <button
+    :disabled="disabled"
     class="button"
     v-on="$listeners"
   >
@@ -14,10 +15,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import './style.css';
 
 @Component({
-  name: 'AButton',
+  name: 'AppButton',
 })
 
-export default class AButton extends Vue {
+export default class AppButton extends Vue {
   @Prop({ required: false })
   readonly disabled!: boolean;
 

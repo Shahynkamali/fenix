@@ -2458,6 +2458,13 @@ babel-plugin-transform-es2015-modules-commonjs@^6.26.0, babel-plugin-transform-e
     babel-template "^6.26.0"
     babel-types "^6.26.0"
 
+babel-plugin-transform-runtime@6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-runtime/-/babel-plugin-transform-runtime-6.23.0.tgz#88490d446502ea9b8e7efb0fe09ec4d99479b1ee"
+  integrity sha1-iEkNRGUC6puOfvsP4J7E2ZR5se4=
+  dependencies:
+    babel-runtime "^6.22.0"
+
 babel-plugin-transform-strict-mode@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-strict-mode/-/babel-plugin-transform-strict-mode-6.24.1.tgz#d5faf7aa578a65bbe591cf5edae04a0c67020758"
@@ -5042,7 +5049,7 @@ finalhandler@~1.1.2:
     statuses "~1.5.0"
     unpipe "~1.0.0"
 
-find-babel-config@^1.1.0:
+find-babel-config@1.2.0, find-babel-config@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/find-babel-config/-/find-babel-config-1.2.0.tgz#a9b7b317eb5b9860cda9d54740a8c8337a2283a2"
   integrity sha512-jB2CHJeqy6a820ssiqwrKMeyC6nNdmrcgkKWJWmpoxpE8RKciYJXCcXRq1h2AzCo5I5BJeN2tkGEO3hLTuePRA==
@@ -6845,6 +6852,15 @@ jest-validate@^24.9.0:
     jest-get-type "^24.9.0"
     leven "^3.1.0"
     pretty-format "^24.9.0"
+
+jest-vue-preprocessor@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/jest-vue-preprocessor/-/jest-vue-preprocessor-1.7.1.tgz#607724622ce321c538fe37e04ec12b67188ec9bb"
+  integrity sha512-3JStGaNMuSzuo6OytlnUjtF+L9iYwKMu+BCrQYPXu3DEpzmKuuY3bZiTUz6+x9NbElKz2NMQNxysIgNZaT/QqA==
+  dependencies:
+    babel-plugin-transform-runtime "6.23.0"
+    find-babel-config "1.2.0"
+    vue-property-decorator "8.3.0"
 
 jest-watch-typeahead@^0.4.2:
   version "0.4.2"
@@ -11732,6 +11748,13 @@ vue-loading-overlay@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/vue-loading-overlay/-/vue-loading-overlay-3.4.2.tgz#34792a83218df1d35dff50121ce9fac2114f1c38"
   integrity sha512-xcB+NPjl76eA0uggm707x3ZFgrNosZXpynHipyS3K+rrK1NztOV49R1LY+/4ij5W1KYANp7eRI2EIHrxCpmWAw==
+
+vue-property-decorator@8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-8.3.0.tgz#536f027dc7d626f37c8d85a2dc02f0a6cb979440"
+  integrity sha512-77YtTbZHd5CNiPzbqv51kEgL48yvD2dUDfF28vEyw3MbQ9bBAb/tDyFzskcqjNRbWyXk1vq4oM2CK/LfhxuIBg==
+  dependencies:
+    vue-class-component "^7.1.0"
 
 vue-property-decorator@^8.4.2:
   version "8.5.1"

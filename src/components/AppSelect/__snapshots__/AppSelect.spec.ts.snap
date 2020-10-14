@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppSelect should accept a array of strings as a prop and set that as options 1`] = `
+<div
+  class="select"
+>
+  <label
+    class="sr-only"
+    for="select"
+  >
+    
+    select
+  
+  </label>
+   
+  <select
+    class="select__button"
+    id="select"
+  >
+    <option
+      value="Ascending Age "
+    >
+      
+      Ascending Age 
+    
+    </option>
+    <option
+      value="Descending Age"
+    >
+      
+      Descending Age
+    
+    </option>
+  </select>
+</div>
+`;
+
+exports[`AppSelect should display the selected option 1`] = `
+<div
+  class="select"
+>
+  <label
+    class="sr-only"
+    for="select"
+  >
+    
+    select
+  
+  </label>
+   
+  <select
+    class="select__button"
+    id="select"
+  >
+    <option
+      value="Ascending Age "
+    >
+      
+      Ascending Age 
+    
+    </option>
+    <option
+      value="Descending Age"
+    >
+      
+      Descending Age
+    
+    </option>
+  </select>
+</div>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppImage should render a image 1`] = `
+<div
+  class="image"
+>
+  <!---->
+   
+  <img
+    alt="image"
+    class="image__img"
+    src=""
+  />
+</div>
+`;
+
+exports[`AppImage should render a placeholder component 1`] = `
+<div
+  class="image"
+>
+  <!---->
+   
+  <img
+    alt="image"
+    class="image__img"
+    src=""
+  />
+</div>
+`;

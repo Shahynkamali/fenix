@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppButton Raises click event when clicked 1`] = `
+<button
+  class="button"
+>
+  
+    click me
+  
+</button>
+`;
+
+exports[`AppButton it should render the prop text 1`] = `
+<button
+  class="button"
+>
+  
+    App
+  
+</button>
+`;
+
+exports[`AppButton should disable the button 1`] = `
+<button
+  class="button"
+  disabled="disabled"
+>
+  
+    click me
+  
+</button>
+`;
