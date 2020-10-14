@@ -27,11 +27,11 @@ export default class Gnome extends GnomeDTO {
     return `bg-${this.hair_color.toLowerCase()}-100 text-${this.hair_color.toLowerCase()}-800`;
   }
 
-  get isEmployed() {
+  get isEmployed(): boolean {
     return !!this.professions.length;
   }
 
-  static findGnomes(names: string[], gnomes: Gnome[]) {
+  static findGnomes(names: string[], gnomes: Gnome[]): Gnome[] {
     const friendProfiles: Gnome[] = [];
     names.forEach((friend: string) => {
       gnomes.forEach((character: Gnome) => {
@@ -43,35 +43,35 @@ export default class Gnome extends GnomeDTO {
     return friendProfiles;
   }
 
-  private static sortAscending(collection: Gnome[]) {
+  private static sortAscending(collection: Gnome[]): Gnome[] {
     return collection.sort((a, b) => a.age - b.age);
   }
 
-  private static sortDescending(collection: Gnome[]) {
+  private static sortDescending(collection: Gnome[]): Gnome[] {
     return collection.sort((a, b) => b.age - a.age);
   }
 
-  static sortGnomesByAge(collection: Gnome[], order: SORTBYAGE) {
+  public static sortGnomesByAge(collection: Gnome[], order: SORTBYAGE): Gnome[] {
     return order === SORTBYAGE.ASCENDING ? Gnome.sortAscending(collection) : Gnome.sortDescending(collection);
   }
 
-  static sortGnomesByHairColor(gnomes: Gnome[], haircolor: HAIRCOLORS) {
+  public static sortGnomesByHairColor(gnomes: Gnome[], haircolor: HAIRCOLORS): Gnome[] {
     return haircolor === HAIRCOLORS.ALL ? gnomes : gnomes.filter((gnome: Gnome) => gnome.hair_color === haircolor);
   }
 
-  static sortGnomesByProfession(gnomes: Gnome[], profession: string) {
+  public static sortGnomesByProfession(gnomes: Gnome[], profession: string): Gnome[] {
     return profession === 'All Professions' ? gnomes : gnomes.filter((gnome: Gnome) => gnome.professions.includes(profession));
   }
 
-  static sortGnomesByName(gnomes: Gnome[], name: string): Gnome[] {
+  public static sortGnomesByName(gnomes: Gnome[], name: string): Gnome[] {
     return !name ? gnomes : gnomes.filter((gnome: Gnome) => name.toLowerCase().split(' ').every((n) => gnome.name.toLowerCase().includes(n)));
   }
 
-  static mergeArrayAndRemoveDuplicats(arr: any): string[] {
+  private static mergeArrayAndRemoveDuplicats(arr: any): string[] {
     return [...new Set([].concat(...arr))];
   }
 
-  static collectionOfAllProfessions(gnomes: Gnome[]): string[] {
+  public static collectionOfAllProfessions(gnomes: Gnome[]): string[] {
     const gnomesWithProffessions = gnomes.filter((gnome: Gnome) => gnome.isEmployed);
     const allProfessions: string[][] = [];
     gnomesWithProffessions.forEach((gnome: Gnome) => {

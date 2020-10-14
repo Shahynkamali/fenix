@@ -66,3 +66,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## Troubleshooting
 
 - Running VSCode using the Remote Container extension on Windows may cause Yarn to run into a memory error and cause a soft-lock in Docker due to the speed at which Docker attempts to process files. It has been discovered that running `yarn install` with the `--verbose` parameter helps throttle this speed and may fix this behavior.
+
+
+
+## Testing
+
+Components are being testing in isolation for props, events, and slots.
+Because i was running short on time, the amount of tests are minimal,
+important tests missing: API call tests.

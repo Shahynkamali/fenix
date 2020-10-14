@@ -183,7 +183,7 @@ export default class App extends Vue {
     return !!this.collection.length;
   }
 
-  get promiseWasResolved() {
+  get promiseWasResolved(): boolean {
     return this.collection.length > 1;
   }
 
@@ -197,16 +197,16 @@ export default class App extends Vue {
     return this.promiseWasResolved ? 'Brastlewark' : this.collection[0];
   }
 
-  toggleSlideOver() {
+  private toggleSlideOver(): void {
     this.isSlideOverActive = !this.isSlideOverActive;
   }
 
-  handleDetails(payload: Gnome): void {
+  private handleDetails(payload: Gnome): void {
     this.activeGnome = payload;
     this.isSlideOverActive = true;
   }
 
-  clearCollection(collection: Gnome[]): void {
+  private clearCollection(collection: Gnome[]): void {
     this.isLoading = true;
     collection.splice(0, collection.length);
     this.isLoading = false;
@@ -227,9 +227,8 @@ export default class App extends Vue {
 <style scoped>
 .app {
   max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
+
+  @apply w-full my-0 mx-auto p-10;
 }
 
 .app__toolbar {

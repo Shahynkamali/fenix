@@ -66,7 +66,7 @@ export default class AppImage extends Vue {
 
   mounted() {
     const { src, srcset, $el } = this as any;
-    let timeOut: number | undefined;
+    let timeOut: any;
 
     const observer = new IntersectionObserver(([entry]) => {
       const img = $el.querySelector('.image__img') as any;

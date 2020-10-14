@@ -68,9 +68,9 @@ export default class AppToolbar extends Vue {
     }
   }
 
-  viewPortWidth = 0;
+  private viewPortWidth = 0;
 
-  isToolBarOpen = false;
+  private isToolBarOpen = false;
 
   private toggleToolBarButton(): void {
     this.isToolBarOpen = !this.isToolBarOpen;
@@ -80,12 +80,12 @@ export default class AppToolbar extends Vue {
     this.viewPortWidth = window.innerWidth;
   }
 
-  created(): void {
+  private created(): void {
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
   }
 
-  destroyed(): void {
+  private destroyed(): void {
     window.removeEventListener('resize', this.handleResize);
   }
 }

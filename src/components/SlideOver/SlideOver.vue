@@ -52,7 +52,7 @@ export default class SlideOver extends Vue {
   @Prop({ required: true })
     readonly data!: Gnome;
 
-  toggleSlideOver() {
+  private toggleSlideOver(): void {
     this.$emit('toggleSlideOver');
   }
 }

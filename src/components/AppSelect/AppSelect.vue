@@ -48,9 +48,9 @@ export default class AppSelect extends Vue {
     @Prop({ required: false })
     readonly value!: string;
 
-    selectedOption: null | string = null;
+    private selectedOption: null | string = null;
 
-    mounted(): void {
+    private mounted(): void {
       this.selectedOption = this.value;
     }
 }

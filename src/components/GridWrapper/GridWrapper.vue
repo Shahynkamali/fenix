@@ -24,11 +24,11 @@ export default class GridWrapper extends Vue {
   @Prop({ required: false, default: 3 })
   readonly gap!: number;
 
-  get isBrowserIE() {
+  get isBrowserIE(): boolean {
     return this.$browserDetect ? this.$browserDetect.isIE : false;
   }
 
-  get gridStyles() {
+  get gridStyles(): string {
     const smallGrid = Math.round(this.column) - 1;
     const largeGrid = Math.round(this.column) + 1;
     const extraLargeGrid = Math.round(this.column) + 2;
