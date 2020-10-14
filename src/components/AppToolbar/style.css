@@ -38,7 +38,7 @@
   @apply block h-6 w-6;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 676px) {
   .toolbar__content--horizontal {
     @apply hidden;
   }

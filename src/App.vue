@@ -240,7 +240,7 @@ export default class App extends Vue {
 }
 
 .app__toolbar-item {
-  @apply px-2 xs:w-full;
+  @apply px-2 xs:w-full sm:w-full;
 }
 
 </style>

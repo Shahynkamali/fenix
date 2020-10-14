@@ -19,10 +19,13 @@
           <div class="text-lg leading-6 font-medium">
             <h4>{{ data.name }}</h4>
           </div>
-          <h2 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+          <h2
+            v-if="data.professions.length"
+            class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10"
+          >
             Professions
           </h2>
-          <ul>
+          <ul v-if="data.professions.length">
             <li
               v-for="(profession, index) in data.professions"
               :key="index"
@@ -31,10 +34,13 @@
               {{ profession }}
             </li>
           </ul>
-          <h2 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+          <h2
+            v-if="data.friends.length"
+            class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10"
+          >
             Friends
           </h2>
-          <ul>
+          <ul v-if="data.friends.length">
             <li
               v-for="(friend, index) in data.friends"
               :key="index"
