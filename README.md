@@ -1,8 +1,8 @@
 # Fenix Technical Assignment
 
-## Libraries User:
+## Libraries Used:
 * Vue.js
-* Tailwind CSS / Tailwind unit
+* Tailwind CSS / Tailwind UI
 * TypeScript
 
 ## Requirements
@@ -16,6 +16,10 @@
 1. Ensure you have Docker running on your machine.
 2. Open the project in Visual Studio Code and run it inside Remote Container (see Requirements). This will install all VScode extensions to support this project, syntax highlighting and auto linting.
 3. Inside the container (use Visual Studio Code console) run ``` yarn ``` to install al the dependecies required in the project.
+
+
+## Running the project with Docker
+run ```yarn serve``` to run the project. 
 
 ## Closing the project
 
